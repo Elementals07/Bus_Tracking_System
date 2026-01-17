@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - VITAP Bus Tracking</title>
+    <link rel="stylesheet" href="../css/common-styles.css">
+    <link rel="stylesheet" href="./student-styles.css">
+</head>
+<body>
+    <div class="dashboard-app">
+        <header class="app-header" role="banner">
+            <div class="logo-area">
+                <span class="logo-placeholder" aria-label="VITAP Logo">🚌</span>
+                <span class="app-title">VITAP Bus Tracking</span>
+            </div>
+            <nav class="main-nav" aria-label="Main navigation">
+            </nav>
+            <div class="profile-menu" tabindex="0" aria-haspopup="true" aria-label="User menu">
+                <span class="profile-avatar">👤</span>
+                <span class="profile-name" id="profileName">Student</span>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <button onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+        <div class="dashboard-grid">
+            <aside id="sidebar" class="sidebar" role="navigation" aria-label="Bus Tracking Sections">
+                <nav class="sidebar-nav">
+                    <a href="#" class="sidebar-link active"><span class="sidebar-icon">🏠</span><span class="sidebar-text">Home</span></a>
+                    <a href="all-buses.html" class="sidebar-link"><span class="sidebar-icon">🚌</span><span class="sidebar-text">All Buses</span></a>
+                </nav>
+            </aside>
+            <main class="main-content" id="mainContent" tabindex="-1" aria-label="Dashboard main content">
+                
+                <section id="section-home" class="content-section active">
+                    <div class="dashboard-header">
+                        <h2 id="welcomeMessage">Welcome, Student!</h2>
+                    </div>
+                    <div id="searchResults" class="results-section card" aria-live="polite"></div>
+                </section>
+
+                <section id="section-search" class="content-section">
+                    <div class="search-section card" aria-labelledby="searchTitle">
+                        <h3 id="searchTitle">🔍 Search Buses</h3>
+                        <div class="search-bar">
+                            <span class="search-icon">🔍</span>
+                            <input type="text" id="busNumberInput" placeholder="Bus number or stop name" autocomplete="off" aria-label="Search buses or stops" />
+                            <button class="btn btn-secondary" id="searchBtn">Search</button>
+                        </div>
+                        <div class="filter-sort-row">
+                            <select id="routeFilter" aria-label="Filter by route">
+                                <option value="">All Routes</option>
+                            </select>
+                            <select id="statusFilter" aria-label="Filter by status">
+                                <option value="">All Statuses</option>
+                                <option value="on-time">On Time</option>
+                                <option value="delayed">Delayed</option>
+                                <option value="arrived">Arrived</option>
+                            </select>
+                            <select id="sortBy" aria-label="Sort by">
+                                <option value="eta">Sort by ETA</option>
+                                <option value="route">Sort by Route</option>
+                                <option value="occupancy">Sort by Occupancy</option>
+                            </select>
+                        </div>
+                        <div id="autocompleteSuggestions" class="autocomplete-list" role="listbox"></div>
+                    </div>
+                </section>
+
+                <section id="section-favorites" class="content-section">
+                    <div class="favorites-section card" aria-labelledby="favoritesTitleStandalone">
+                        <h3 id="favoritesTitleStandalone">📌 Favorite Stops</h3>
+                        <div id="favoriteStopsStandalone"></div>
+                        <button class="btn btn-primary mt-4" onclick="showAllStops()">+ Add Favorite Stop</button>
+                    </div>
+                </section>
+                <section id="section-notifications" class="content-section">
+                    <div id="notificationPanelInline" class="card" aria-labelledby="notificationTitle">
+                        <h3 id="notificationTitle">🔔 Notifications</h3>
+                        <div id="notificationList"></div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+    <script src="../js/common-data.js"></script>
+    <script src="../js/common-utils.js"></script>
+    <script src="student-dashboard.js"></script>
+</body>
+</html>
